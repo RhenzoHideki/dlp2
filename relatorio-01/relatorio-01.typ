@@ -32,6 +32,7 @@ Qual implementação usou menos área? Por quê? Como o delay se comportou?
 
 Comente as diferenças entre os valores de área e delay obtidos nas operações a), b) e c).
 
+#pagebreak()
 = Resultados
 #align(center)[
 #table(
