@@ -44,10 +44,67 @@ A figura 1 demonstra como serão feitas as entradas e saida, por exemplo ambas a
 
 Na figura 2 pode ser ver o somador implementado para essa atividade, um somador BCD. Neste é possiveis observar a soma das unidades , uma verificação se existe ou não carry e paralelamente a soma das dezenas com um processo similar.
 
+#pagebreak()
 == Implementação somador BCD
-Resultados , .do , rtlviwer.
+Resultados que foram obtidos fazendo o código do somador BCD.
+\ Como projetado no diagrama , a implementação do código seguiu de forma similar. A utilização de 2 somadores BCDs ao invés de 1 somador BCD foi feita pois facilitava a adaptação do código.
 
-== Comparação somador bin2bcd
-Area da implementação
+
+#figure(
+  image("./Figuras/rtlviewer-ap1.png",width:100%),
+  caption: [
+     rtl viewer projeto completo \ Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
+#figure(
+  image("./Figuras/modelsim-adder.png",width:100%),
+  caption: [
+     modelsim somador bcd \ Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
+Na figura 4 é possivel observar o teste feito para um somador BCD
+
+#figure(
+  image("./Figuras/modelsim-ap1.png",width:100%),
+  caption: [
+     modelsim projeto completo \ Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+Na figura 5 foi feito o teste completo , mostrando todas as entradas e saidas do sistema em diferentes situações.
+
+
+== Implementação somador bin2bcd
+Como pedido pelo exercício , foi feita uma segunda versão que não utilizava BCD como entrada , mas sim entradas binárias.
+
+#figure(
+  image("./Figuras/rtlviewer-ap2.png",width:100%),
+  caption: [
+     rtl viewer projeto completo \ Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+A figura 6 mostra a abordagem feita para o somador de binários.
+
+
+#figure(
+  image("./Figuras/modelsim-ap2.png",width:100%),
+  caption: [
+     modelsim projeto completo \ Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+A figura 7 mostra o teste feito para certificar que o código está funcionando da forma esperada.
+
+== Comparação
+Apesar do somador bin2bcd ter menos componentes pensados na sua implementação, utilizando o relatórios gerados pela compinalção no Quartus 2 , o total de números de elementos lógicos utilizados for de 245 / 114,480 contra os 108 / 114,480 utilizados no somador BCD .
+
+O total de elementos logícos mostra o quão custoso é a conversão de binário para BCD , uma vez que se baseia em calculos como divisão e multiplicação para poder separar a unidade , dezena e centena do valor.
+
 
 = Conclusão
+Por fim a atividade apresentou como a abordagem de diferentes formas pode impactar a eficiencia de um simples somador.Foram implementados dois somadores BCD em paralelo, permitindo a correta soma dos dígitos individuais e o gerenciamento adequado dos carries entre os dígitos. Além disso, uma implementação alternativa utilizando um somador binário para BCD foi realizada, oferecendo uma opção para lidar com números binários em vez de BCD. A comparação entre os dois métodos revelou a complexidade adicional envolvida na conversão de binário para BCD, destacando a eficiência do projeto BCD original. Em resumo, o projeto demonstrou soluções bem elaboradas para a adição de números BCD de 2 dígitos, mostrando um entendimento sólido dos conceitos de lógica digital e dispositivos programáveis.
