@@ -105,6 +105,17 @@ Apesar do somador bin2bcd ter menos componentes pensados na sua implementação,
 
 O total de elementos logícos mostra o quão custoso é a conversão de binário para BCD , uma vez que se baseia em calculos como divisão e multiplicação para poder separar a unidade , dezena e centena do valor.
 
+Além disso é possivel analisar a diferença através da analise de tempo , o somador BCD se provou mais rapido que o somador bin2bcd. O somador BCD levou 3.823 ns enquanto o somador bin2bcd levou 11.589 , mais que o dobro de tempo.
+
+#align(center)[
+#table(
+  columns: (auto,auto,auto,),
+  align: center,
+  [],[somador BCD],[somador bin2bcd],
+  [Área(LE)],[245/114480],[108/114480],
+  [Delay sem IO (ns)],[3.823],[11.589],  
+  );
+]
 
 = Conclusão
 Por fim a atividade apresentou como a abordagem de diferentes formas pode impactar a eficiencia de um simples somador.Foram implementados dois somadores BCD em paralelo, permitindo a correta soma dos dígitos individuais e o gerenciamento adequado dos carries entre os dígitos. Além disso, uma implementação alternativa utilizando um somador binário para BCD foi realizada, oferecendo uma opção para lidar com números binários em vez de BCD. A comparação entre os dois métodos revelou a complexidade adicional envolvida na conversão de binário para BCD, destacando a eficiência do projeto BCD original. Em resumo, o projeto demonstrou soluções bem elaboradas para a adição de números BCD de 2 dígitos, mostrando um entendimento sólido dos conceitos de lógica digital e dispositivos programáveis.
