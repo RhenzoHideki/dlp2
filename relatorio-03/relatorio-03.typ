@@ -20,6 +20,8 @@ No relatório será apresentado o desenvolvimento de um relógio digital, utiliz
 A primeira parte do projeto foi a adição do centésio de segundo.
 Inicialmente foi-se dado um código para ser adaptado. O código trabalhado tinha os contadores de segundos e de minutos.
 
+A implementação teve 2 etapas. Primeiramente ajustando o código que foi dado em aula e o adaptando para adicionar mais uma contagem , sendo essa os centisegundos . A segunta parte foi corrigir a contagem do clock , isso ocorreu pois o código original contava para o ciclo de 50 MHz seria igual a 1 segundo, porém agora seria necessário contar valores abaixo de 1 segundo , e como queriamos contra o centisegundo a adaptação foi dividir os contadores que geravam 1 segundo por 100 , dessa forma foi possível obter o centésimo de segundo.
+
 Esta parte foi a adição do centésio de segundo.
 
 A visualização do rtl ficou da seguinte maneira:
@@ -31,7 +33,7 @@ A visualização do rtl ficou da seguinte maneira:
   ],
   supplement: "Figura"
 );
-
+Visualização do .do para testar o código
 #figure(
   image("./Figuras/q1t.png",width:90%),
   caption: [
@@ -41,7 +43,60 @@ A visualização do rtl ficou da seguinte maneira:
 );
 
 == Adicionar PLL
-A segunda parte do projeto foi a adição de um coponente que converte de um clock de 50MHz para um de 10 KHz 
+A segunda parte do projeto foi a implementação da componente que converte o clock de 50MHz para 10KHz.
+A adição do PLL foi dada da seguinte forma :  
+\ Compilar o código, seguir na aba ipcatalog e procurar pelo elemento ALTPLL
+#figure(
+  image("./Figuras/ipcatalog.png",width:50%),
+  caption: [
+   Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
+Selecionando o elemente ALTPLL será aberto uma aba nova, nesta aba serão configuradas os elementos para ser gerado o pll desejado.
+Primeiramente colaca-se a frequência correta de entrada em inclk0 input.
+#figure(
+  image("./Figuras/ppl1.png",width:90%),
+  caption: [
+   Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+#pagebreak()
+Após colocar a frênquencia de entrada correta , é colocado na terceira pagina das configurações em "Output clock", nessa aba é necessário selecionar "Enter output clock frequency" para ajustar a frequência deseja, no caso deste projeto foi decidida a frequência de 10 MHz
+#figure(
+  image("./Figuras/ppl2.png",width:90%),
+  caption: [
+   Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
+Após a selecionar a frequência de saída , pula-se para a ultima etapa e seliciona-se tanto os arquivos com final .cmp e .vhd
+#figure(
+  image("./Figuras/ppl3.png",width:90%),
+  caption: [
+   Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
+Desta forma é gerado o arquivo PLL , que deverá ser inserido no top-level do código do projeto desejado.
+
+Abaixo parte do código gerado , nele é possivel ver os parâmetros para a converção de clock que ocorre
+```vhdl
+	GENERIC MAP (
+		bandwidth_type => "AUTO",
+		clk0_divide_by => 5000,
+		clk0_duty_cycle => 50,
+		clk0_multiply_by => 1,
+		clk0_phase_shift => "0",
+		compensate_clock => "CLK0",
+		inclk0_input_frequency => 20000,
+```
+
+Após inserir o pll o novo RTL ficou desta maneira:
 
 #figure(
   image("./Figuras/q2.png",width:90%),
@@ -51,6 +106,7 @@ A segunda parte do projeto foi a adição de um coponente que converte de um clo
   supplement: "Figura"
 );
 
+Uma visualização do .do sendo executado para vizualizar o funcionamento do pll 
 #figure(
   image("./Figuras/q2t.png",width:90%),
   caption: [
@@ -59,9 +115,15 @@ A segunda parte do projeto foi a adição de um coponente que converte de um clo
   supplement: "Figura"
 );
 
+#pagebreak()
 == Modificar contadores para o BCD
-A terceira parte do projeto foi a remoção do conversores BCD e contando diretamente os valores em BCD 
+Nesta etapa do projeto foi desejada a remoção dos conversores BCD vistos nos RTLs anteriores.
 
+Para a adaptação do projeto foi primeiramente necessário remover os conversores Bin2BCD. Após esta remoção foi feita uma adaptação no código de contagem timer , esta que envolveu ao invés de contar-se os valores de unidade e decimais juntos , foi alterado para contagens separadas.
+
+Desta forma as contagens sairam de forma separada em unidade e decimal dos centisegundos , segundos e minutos. Dessa forma cumprindo o requisito da parte 3.
+
+Abaixo está o RTL da parte 3 , nele é possivel ver que houve a remoção dos conversores.
 #figure(
   image("./Figuras/q3.png",width:90%),
   caption: [
@@ -95,6 +157,7 @@ A quartar parte é remover os contadores e substitui-los por LFSR
   ],
   supplement: "Figura"
 );
+#pagebreak()
 == Comparativos
 Como pedido , foi analizada as diferenças entres os resultados feitos nas diferentes partes.
 #align(center)[
