@@ -32,6 +32,14 @@ A visualização do rtl ficou da seguinte maneira:
   supplement: "Figura"
 );
 
+#figure(
+  image("./Figuras/q1t.png",width:90%),
+  caption: [
+   Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
 == Adicionar PLL
 A segunda parte do projeto foi a adição de um coponente que converte de um clock de 50MHz para um de 10 KHz 
 
@@ -39,6 +47,14 @@ A segunda parte do projeto foi a adição de um coponente que converte de um clo
   image("./Figuras/q2.png",width:90%),
   caption: [
      Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
+#figure(
+  image("./Figuras/q2t.png",width:90%),
+  caption: [
+   Fonte: Elaborada pelo autor
   ],
   supplement: "Figura"
 );
@@ -54,6 +70,22 @@ A terceira parte do projeto foi a remoção do conversores BCD e contando direta
   supplement: "Figura"
 );
 
+#figure(
+  image("./Figuras/q3t.png",width:90%),
+  caption: [
+   Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
+
+
+#figure(
+  image("./Figuras/q3t2.png",width:90%),
+  caption: [
+   Fonte: Elaborada pelo autor
+  ],
+  supplement: "Figura"
+);
 == Modificar para o LFSR
 A quartar parte é remover os contadores e substitui-los por LFSR
 #figure(
@@ -76,7 +108,7 @@ Como pedido , foi analizada as diferenças entres os resultados feitos nas difer
 
 )
 ]
-== Conclusão
+= Conclusão
 A partir da implementação das diferentes partes foi possível analizar a otimização dos sistemas.
 
 A utilização e redução de elementes mostra diretamente como a otimização pode afetar o espaço oculpado pelo código. 
